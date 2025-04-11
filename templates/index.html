@@ -1,0 +1,55 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        form input[type="text"], form input[type="email"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button, a.button {
+            padding: 6px 12px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+        a.button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1>
+    <table>
+        <tr><th>ID</th><th>Name</th><th>Email</th></tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add New User</h2>
+    <form action="/add" method="post">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <h2>Export Users</h2>
+    <a href="/export/csv" class="button">Export CSV</a>
+    <a href="/export/json" class="button">Export JSON</a>
+    <a href="/export/pdf" class="button">Export PDF</a>
+</body>
+</html>
